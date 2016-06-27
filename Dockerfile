@@ -1,4 +1,4 @@
-## -*- docker-image-name: "scaleway/python:latest" -*-
+## -*- docker-image-name: "scaleway/kafka:latest" -*-
 FROM scaleway/ubuntu:amd64-xenial
 # following 'FROM' lines are used dynamically thanks do the image-builder
 # which dynamically update the Dockerfile if needed.
@@ -15,6 +15,9 @@ MAINTAINER Scaleway <opensource@scaleway.com> (@scaleway)
 RUN /usr/local/sbin/scw-builder-enter
 
 
+# Install Kafka
+RUN adduser --disabled-login --gecos 'Kafka' kafka
+RUN apt-get update && apt-get -y upgrade && apt-get -y install default-jre zookeeperd
 
 
 # Clean rootfs from image-builder
